@@ -32,17 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.spike1 = new System.Windows.Forms.PictureBox();
             this.spike2 = new System.Windows.Forms.PictureBox();
-            this.spike3 = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
             this.sprite = new System.Windows.Forms.ImageList(this.components);
             this.move_stuff = new System.Windows.Forms.Timer(this.components);
             this.animate = new System.Windows.Forms.Timer(this.components);
             this.manager = new System.Windows.Forms.Timer(this.components);
             this.score = new System.Windows.Forms.Label();
+            this.tiles = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.spike1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spike2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spike3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tiles)).BeginInit();
             this.SuspendLayout();
             // 
             // spike1
@@ -63,18 +63,10 @@
             this.spike2.TabIndex = 1;
             this.spike2.TabStop = false;
             // 
-            // spike3
-            // 
-            this.spike3.Image = ((System.Drawing.Image)(resources.GetObject("spike3.Image")));
-            this.spike3.Location = new System.Drawing.Point(192, 129);
-            this.spike3.Name = "spike3";
-            this.spike3.Size = new System.Drawing.Size(64, 64);
-            this.spike3.TabIndex = 2;
-            this.spike3.TabStop = false;
-            // 
             // player
             // 
             this.player.BackColor = System.Drawing.Color.Transparent;
+            this.player.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
             this.player.Location = new System.Drawing.Point(0, 65);
             this.player.Name = "player";
@@ -96,6 +88,7 @@
             // 
             // animate
             // 
+            this.animate.Interval = 500;
             this.animate.Tick += new System.EventHandler(this.animate_Tick);
             // 
             // manager
@@ -115,6 +108,15 @@
             this.score.TabIndex = 4;
             this.score.Text = "0";
             // 
+            // tiles
+            // 
+            this.tiles.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tiles.BackgroundImage")));
+            this.tiles.Location = new System.Drawing.Point(0, 0);
+            this.tiles.Name = "tiles";
+            this.tiles.Size = new System.Drawing.Size(521, 192);
+            this.tiles.TabIndex = 5;
+            this.tiles.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,18 +125,20 @@
             this.ClientSize = new System.Drawing.Size(192, 192);
             this.Controls.Add(this.score);
             this.Controls.Add(this.player);
-            this.Controls.Add(this.spike3);
             this.Controls.Add(this.spike2);
             this.Controls.Add(this.spike1);
+            this.Controls.Add(this.tiles);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Infinite Walker";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.spike1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spike2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spike3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,13 +148,13 @@
 
         private System.Windows.Forms.PictureBox spike1;
         private System.Windows.Forms.PictureBox spike2;
-        private System.Windows.Forms.PictureBox spike3;
         private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.ImageList sprite;
         private System.Windows.Forms.Timer move_stuff;
         private System.Windows.Forms.Timer animate;
         private System.Windows.Forms.Timer manager;
         private System.Windows.Forms.Label score;
+        private System.Windows.Forms.PictureBox tiles;
     }
 }
 

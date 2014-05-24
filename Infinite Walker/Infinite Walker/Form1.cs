@@ -30,35 +30,21 @@ namespace Infinite_Walker
         private void spawnstuff()
         {
             Random rnd = new Random();
-            choice = rnd.Next(0, 2);
-            if (choice == 0)
-            {
-                spike1.Visible = true;
-                spike2.Visible = true;
-                spike3.Visible = false;
-            }
-            if (choice == 1)
-            {
-                spike1.Visible = true;
-                spike2.Visible = false;
-                spike3.Visible = true;
-            }
-            if (choice == 2)
-            {
-                spike1.Visible = false;
-                spike2.Visible = true;
-                spike3.Visible = true;
-            }
-            spike1.Location = new Point(192, 0);
-            spike2.Location = new Point(192, 64);
-            spike3.Location = new Point(192, 129);
+            int which = rnd.Next(0, 2);
+            spike1.Location = new Point(192, which * 64);
+            which = rnd.Next(0, 2);
+            spike2.Location = new Point(192, which * 64);
         }
 
         private void move_stuff_Tick(object sender, EventArgs e)
         {
             spike1.Location = new Point(spike1.Location.X - 1, spike1.Location.Y);
             spike2.Location = new Point(spike2.Location.X - 1, spike2.Location.Y);
-            spike3.Location = new Point(spike3.Location.X - 1, spike3.Location.Y);
+            tiles.Location = new Point(tiles.Location.X - 1, tiles.Location.Y);
+            if (tiles.Location.X <= -192)
+            {
+                tiles.Location = new Point(0, 0);
+            }
         }
 
         private void animate_Tick(object sender, EventArgs e)
@@ -95,26 +81,13 @@ namespace Infinite_Walker
         }
         private void checkbounds()
         {
-            if (choice != 2)
+            if (player.Bounds.IntersectsWith(spike1.Bounds))
             {
-                if (player.Bounds.IntersectsWith(spike1.Bounds))
-                {
-                    score.Text = "FAIL";
-                }
+                score.Text = "FAIL";
             }
-            if (choice != 1)
+            if (player.Bounds.IntersectsWith(spike2.Bounds))
             {
-                if (player.Bounds.IntersectsWith(spike2.Bounds))
-                {
-                    score.Text = "FAIL";
-                }
-            }
-            if (choice != 0)
-            {
-                if (player.Bounds.IntersectsWith(spike3.Bounds))
-                {
-                    score.Text = "FAIL";
-                }
+                score.Text = "FAIL";
             }
         }
         private void checkloc()
